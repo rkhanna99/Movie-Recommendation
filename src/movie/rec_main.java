@@ -42,7 +42,7 @@ public class rec_main {
 						String genres = br.readLine();
 						System.out.println("Type in a year or range of years separated by a -, ex (2004-2005)");
 						String years = br.readLine();
-						System.out.print("Type in a minimum rating, ratings are out of 5, ex (3.25)");
+						System.out.println("Type in a minimum rating, ratings are out of 5, ex (3.25)");
 						String rating = br.readLine();
 						
 						//Validate input

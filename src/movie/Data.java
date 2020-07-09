@@ -19,113 +19,111 @@ public class Data {
 	public static HashMap<Integer, Movie> parseCSV() {
 		
 		// HashMap that we will use to store all the movie contents
-		HashMap<Integer, Movie> movieData = new HashMap<Integer, Movie>();
-		
+		final HashMap<Integer, Movie> movieData = new HashMap<Integer, Movie>();
+
 		// Location of the text file
-		String csvFile = "src/final.txt";
-        BufferedReader reader = null;
-        String line = "";
-        String cvsSplitBy = ",";
-        String[] placeholder;
-        int movieID;
-        Movie currMovie;
-        
-        // Read the file line by line (surround with try/catch/finally)
-        try {
+		final String csvFile = "final.txt";
+		BufferedReader reader = null;
+		String line = "";
+		String[] placeholder;
+		int movieID;
+		Movie currMovie;
+
+		// Read the file line by line (surround with try/catch/finally)
+		try {
 			reader = new BufferedReader(new FileReader(csvFile));
-			while((line = reader.readLine()) != null) {
-				if(line.contains("\"") || line.contains("<") || line.contains(">") || (countOccurences(line, ';', 0) > 5)) {
+			while ((line = reader.readLine()) != null) {
+				if (line.contains("\"") || line.contains("<") || line.contains(">")
+						|| (countOccurences(line, ';', 0) > 5)) {
 					continue;
 				} else {
-					// Now we parse the lines that have the correct formatting (movieId;title;genres;mean_rating;imdbId;tmdbId)
+					// Now we parse the lines that have the correct formatting
+					// (movieId;title;genres;mean_rating;imdbId;tmdbId)
 					placeholder = line.split(";");
 					movieID = Integer.valueOf(placeholder[0]);
 					currMovie = parseline(placeholder);
 					movieData.put(movieID, currMovie);
 				}
 			}
-		} catch (FileNotFoundException e) {
+		} catch (final FileNotFoundException e) {
 			e.printStackTrace();
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			e.printStackTrace();
 		} finally {
 			if (reader != null) {
 				try {
 					reader.close();
-				} catch (IOException e) {
+				} catch (final IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
 		}
-		
+
 		return movieData;
 	}
-	
-	/*Helper method where we will parse a part of line to get the fields of a movie
+
+	/*
+	 * Helper method where we will parse a part of line to get the fields of a movie
 	 * line[0] -> movieID (This has already been parsed in the parseCSV method)
-	 * line[1] -> title and year
-	 * line[2] -> genres
-	 * line[3] -> mean_rating
-	 * line[4] -> imdbID
-	 * line[5] -> tmdbID*/
-	private static Movie parseline(String[] line) {
+	 * line[1] -> title and year line[2] -> genres line[3] -> mean_rating line[4] ->
+	 * imdbID line[5] -> tmdbID
+	 */
+	private static Movie parseline(final String[] line) {
 		// Movie to return
-		Movie ret = new Movie(null, 0, 0, line, null, null);
-		
+		final Movie ret = new Movie(null, 0, 0, line, null, null);
+
 		// Other variables to be used
-		String yearRegex = "\\([0-9][0-9][0-9][0-9]\\)$";
-		Pattern pattern = Pattern.compile(yearRegex);
-		Matcher matcher = pattern.matcher(line[1]);
+		final String yearRegex = "\\([0-9][0-9][0-9][0-9]\\)$";
+		final Pattern pattern = Pattern.compile(yearRegex);
+		final Matcher matcher = pattern.matcher(line[1]);
 		String[] arr;
 		String name, temp;
 		int rel_year = 0;
-		
-		
+
 		// Parse the first part which has title and year
 		arr = line[1].split(yearRegex);
 		name = arr[0].replaceAll("\\s+$", "");
-		
-		if(matcher.find()) {
+
+		if (matcher.find()) {
 			String temp1 = matcher.group();
 			temp1 = temp1.replaceAll("\\(", "");
 			temp1 = temp1.replaceAll("\\)", "");
 			rel_year = Integer.parseInt(temp1);
 		}
-		
+
 		ret.setName(name);
 		ret.setRel_year(rel_year);
-		
-		
+
 		// Parse the second part which has the genres
 		temp = line[2];
-		if(temp.contains("|")) {
-			String[] genres = temp.split("[|]");
+		if (temp.contains("|")) {
+			final String[] genres = temp.split("[|]");
 			ret.setGenres(genres);
 		} else {
-			String[] genre = {temp};
+			final String[] genre = { temp };
 			ret.setGenres(genre);
 		}
-		
+
 		// Parse the mean rating
 		ret.setRating(Double.parseDouble(line[3]));
-		
+
 		// Parse the imdbID
 		ret.setImdbID(line[4]);
-		
+
 		// Parse the tmdbID
 		ret.setTmdbID(line[5]);
-		
+
 		return ret;
 	}
-	
+
 	// Helper method to count the occurrences of a character in a string
-	private static int countOccurences(String someString, char searchedChar, int index) {
+	private static int countOccurences(final String someString, final char searchedChar, final int index) {
 		if (index >= someString.length()) {
 			return 0;
 		}
 
-		int count = someString.charAt(index) == searchedChar ? 1 : 0;
+		final int count = someString.charAt(index) == searchedChar ? 1 : 0;
 		return count + countOccurences(someString, searchedChar, index + 1);
 	}
 }

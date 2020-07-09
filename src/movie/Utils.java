@@ -124,7 +124,7 @@ public class Utils {
 		int count = 0;
 		
 		//Check the format of the genres, FIX THIS REGEX IT IS CAUSING VALIDATION TO FAIL
-		if(genres.matches("[^,\\s][^\\,]*[^,\\s]*")) {
+		if(genres.matches("[a-zA-Z]+(,[a-zA-Z]+)*")) {
 			checks[0] = true;
 		}
 		
