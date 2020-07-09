@@ -1,0 +1,66 @@
+---
+title: "Movie Data Manipulation"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Data Setup
+
+We are just going to first simply load in the various csv files(movies.csv, ratings.csv, tags.csv)
+
+```{r cars}
+library(tidyverse)
+
+url_movies <- "C:/Users/Rahul/Documents/Summer 2020 Work/Movie Data/ml-latest/movies.csv"
+movies_tab <- read_csv(url_movies)
+
+url_ratings <- "C:/Users/Rahul/Documents/Summer 2020 Work/Movie Data/ml-latest/ratings.csv"
+ratings_tab <- read_csv(url_ratings)
+
+url_tags <- "C:/Users/Rahul/Documents/Summer 2020 Work/Movie Data/ml-latest/tags.csv"
+tags_tab <- read_csv(url_tags)
+
+url_links <- "C:/Users/Rahul/Documents/Summer 2020 Work/Movie Data/ml-latest/links.csv"
+links_tab <- read_csv(url_links)
+
+```
+
+## Organize Data
+
+Now that we have loaded in the datasets we can start to organize the data a little bit. First I will start out by averaging out the ratings for each movie and then sort them. I will also arrange the tags for each movie. After arranging the data properly I will combine all the necessary fields into 1 table. Then I will write the table into a csv file.
+
+```{r tidy}
+library(dplyr)
+library(stats)
+
+mean_ratings <- ratings_tab %>%
+  select(movieId, rating) %>%
+  group_by(movieId) %>%
+  summarize(mean_rating = mean(rating)) %>%
+  mutate_at(vars(starts_with("mean_rating")), funs(round(., 2))) %>%
+  arrange(movieId)
+mean_ratings
+
+proper_tags <- tags_tab %>%
+  select(movieId, tag) %>%
+  group_by(movieId) %>%
+  arrange(movieId)
+proper_tags
+
+one_link <- links_tab %>%
+  select(movieId, imdbId, tmdbId)
+one_link
+
+
+adjusted <- merge(movies_tab, mean_ratings, by = "movieId")
+adjusted <- merge(adjusted, one_link, by = "movieId")
+head(adjusted, 10)
+
+write.csv(adjusted,"C:/Users/Rahul/Documents/Summer 2020 Work/Movie Data/ml-latest/final.csv", row.names = FALSE)
+
+```
+
+Now that I have the data in a new csv file I can start to implement the movie recommendation system through Java.
