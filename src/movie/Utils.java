@@ -119,8 +119,7 @@ public class Utils {
 	
 	//Validate recommendation input
 	public static boolean validateRec(String genres, String years, String rating) {
-		boolean[] checks = new boolean[3];
-		boolean ret = false;
+		boolean[] checks = new boolean[3];;
 		int count = 0;
 		
 		//Check the format of the genres, FIX THIS REGEX IT IS CAUSING VALIDATION TO FAIL

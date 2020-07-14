@@ -45,7 +45,7 @@ public class rec_main {
 						System.out.println("Type in a minimum rating, ratings are out of 5, ex (3.25)");
 						String rating = br.readLine();
 						
-						//Validate input
+						//Validate input with Regex
 						if(Utils.validateRec(genres, years, rating) == true) {
 							//Get recommendations if input is valid
 							temp = Utils.recommend(genres, years, rating, movieData);
@@ -65,7 +65,10 @@ public class rec_main {
 						System.out.println("Invalid Command");
 					}
 				} else if(s.contentEquals("2")) {
-					System.out.println("Search for a movie by Name, imdbID, or tmdbID and get more info");
+					System.out.println("Search for a movie by Name, imdbID, or tmdbID and get movie info");
+					String request = br.readLine();
+					
+					
 				} else if(s.contentEquals("exit") || s.contentEquals("quit")) {
 					break;
 				} else {
