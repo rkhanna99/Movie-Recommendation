@@ -21,8 +21,9 @@ public class Data {
 		// HashMap that we will use to store all the movie contents
 		final HashMap<Integer, Movie> movieData = new HashMap<Integer, Movie>();
 
-		// Location of the text file ("files.txt" only works on command line not eclipse)
-		final String csvFile = "C:\\Users\\Rahul\\Documents\\Summer 2020 Work\\Movie Data\\ml-latest\\final.txt";
+		// Location of the text file ("./final.txt" only works on command line not eclipse)
+		// If using eclipse use this location ("C:\\Users\\Rahul\\Documents\\Summer 2020 Work\\Movie Data\\ml-latest\\final.txt")
+		final String csvFile = "./final.txt";
 		BufferedReader reader = null;
 		String line = "";
 		String[] placeholder;

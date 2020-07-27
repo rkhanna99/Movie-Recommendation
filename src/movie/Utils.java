@@ -148,5 +148,11 @@ public class Utils {
 			return false;
 		}
 	}
+
+	// Format data for the API call (Split movie and years)
+	public static String[] formatDataAPI(String info) {
+		String[] ret = info.split(",");
+		return ret;
+	}
 	
 }

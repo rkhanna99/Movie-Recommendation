@@ -65,9 +65,16 @@ public class rec_main {
 						System.out.println("Invalid Command");
 					}
 				} else if(s.contentEquals("2")) {
-					System.out.println("Search for a movie by Name, imdbID, or tmdbID and get movie info");
+					System.out.println("Search for a movie by Name or imdbID and get movie info");
+					System.out.println("If searching for a movie by name include the year too (Movie name,Release Year)");
 					String request = br.readLine();
-					
+					String[] commands = new String[2];
+					if(request.contains(",")) {
+						commands = Utils.formatDataAPI(request);
+					} else {
+						commands[0] = request;
+					}
+					Api_call.handleReq(commands);
 					
 				} else if(s.contentEquals("exit") || s.contentEquals("quit")) {
 					break;
