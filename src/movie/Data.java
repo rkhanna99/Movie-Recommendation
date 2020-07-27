@@ -23,7 +23,7 @@ public class Data {
 
 		// Location of the text file ("./final.txt" only works on command line not eclipse)
 		// If using eclipse use this location ("C:\\Users\\Rahul\\Documents\\Summer 2020 Work\\Movie Data\\ml-latest\\final.txt")
-		final String csvFile = "./final.txt";
+		final String csvFile = "C:\\Users\\Rahul\\Documents\\Summer 2020 Work\\Movie Data\\ml-latest\\final.txt";
 		BufferedReader reader = null;
 		String line = "";
 		String[] placeholder;

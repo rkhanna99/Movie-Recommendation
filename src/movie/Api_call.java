@@ -4,6 +4,7 @@ import java.net.URLEncoder;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
+import com.mashape.unirest.http.exceptions.UnirestException;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
@@ -34,13 +35,27 @@ public class Api_call {
 
 		// Send the appropriate request
 		if(titleYearParam == null) {
-			HttpResponse <JsonNode> response = Unirest.get(host + "?" + imdbParam + "&" + omdbApiKey).asJson();
-			System.out.println(response.getStatus());
-			System.out.println(response.getHeaders().get("Content-Type"));
+			HttpResponse<JsonNode> response;
+			try {
+				response = Unirest.get(host + "?" + imdbParam + "&" + omdbApiKey).asJson();
+				System.out.println(response.getStatus());
+				System.out.println(response.getHeaders().get("Content-Type"));
+			} catch (UnirestException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 		} else {
-			HttpResponse <JsonNode> response = Unirest.get(host + "?" + titleYearParam + "&" + omdbApiKey).asJson();
-			System.out.println(response.getStatus());
-			System.out.println(response.getHeaders().get("Content-Type"));
+			HttpResponse<JsonNode> response;
+			try {
+				response = Unirest.get(host + "?" + titleYearParam + "&" + omdbApiKey).asJson();
+				System.out.println(response.getStatus());
+				System.out.println(response.getHeaders().get("Content-Type"));
+			} catch (UnirestException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 		}
 	}
 
