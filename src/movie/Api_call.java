@@ -17,17 +17,18 @@ public class Api_call {
 	public static void handleReq(String[] commands) {
 
 		// Setup the fields for the request
+		HttpResponse<JsonNode> response = null;
 		String host = "http://www.omdbapi.com/";
 		String charset = "UTF-8";
 		String omdbApiKey = "apikey=94136cdc";
 		String imdbID, title, rel_year, imdbParam = null, titleYearParam = null;
-		if(commands.length == 1) {
+		if(commands[1] == null) {
 			imdbID = commands[0];
 			imdbParam = "i=" + imdbID;
 		} else {
 			title = commands[0];
 			rel_year = commands[1];
-			titleYearParam = "t=" + titleYearParam + "&y=" + rel_year;
+			titleYearParam = "t=" + title + "&y=" + rel_year;
 		}
 		
 		
@@ -35,9 +36,11 @@ public class Api_call {
 
 		// Send the appropriate request
 		if(titleYearParam == null) {
-			HttpResponse<JsonNode> response;
 			try {
 				response = Unirest.get(host + "?" + imdbParam + "&" + omdbApiKey).asJson();
+				System.out.println(host + "?" + imdbParam + "&" + omdbApiKey);
+				
+				//Displays the status of the API call, if we get 200 then everything is running fine
 				System.out.println(response.getStatus());
 				System.out.println(response.getHeaders().get("Content-Type"));
 			} catch (UnirestException e) {
@@ -46,17 +49,22 @@ public class Api_call {
 			}
 			
 		} else {
-			HttpResponse<JsonNode> response;
 			try {
 				response = Unirest.get(host + "?" + titleYearParam + "&" + omdbApiKey).asJson();
+				System.out.println(host + "?" + titleYearParam + "&" + omdbApiKey);
 				System.out.println(response.getStatus());
 				System.out.println(response.getHeaders().get("Content-Type"));
 			} catch (UnirestException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
 		}
+		
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		JsonParser jp = new JsonParser();
+		JsonElement je = jp.parse(response.getBody().toString());
+		String prettyJsonString = gson.toJson(je);
+		System.out.println(prettyJsonString);
 	}
 
 

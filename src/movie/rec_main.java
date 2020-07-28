@@ -83,7 +83,8 @@ public class rec_main {
 				}
 			} catch (IOException e) {
 				e.printStackTrace();
-			} 
+			}
+			System.out.println();
 		}
 		
 		// Close the buffered reader
