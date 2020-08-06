@@ -28,7 +28,7 @@ In this project I wanted to make an application that was capable of providing mo
 - Movie Recommendations (User enters "1")
   - They now have the option of either getting a list of 10 random movies or get recommendations by Genre, Year, and mimimum rating.
     - Random (User enters "random")
-      - !0 random movies are printed out
+      - 10 random movies are printed out
     - Filtered by user (User enters "main")
       - Prompted for Genre(s), Year(s), and Minimum rating
       - Input is then validated by regex
