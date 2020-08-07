@@ -21,12 +21,22 @@ public class Api_call {
 		String host = "http://www.omdbapi.com/";
 		String charset = "UTF-8";
 		String omdbApiKey = "apikey=94136cdc";
-		String imdbID, title, rel_year, imdbParam = null, titleYearParam = null;
+		String imdbID, title = "", rel_year, imdbParam = null, titleYearParam = null;
 		if(commands[1] == null) {
 			imdbID = commands[0];
 			imdbParam = "i=" + imdbID;
 		} else {
-			title = commands[0];
+			//title = commands[0];
+			// Handle the case where the name of the movie has spaces in it, we have to adjust the api call accordingly
+			if(commands[0].contains(" ")) {
+				String[] temp = commands[0].split(" ");
+				for(String s: temp) {
+					title = title + s + "+";
+				}
+				title = title.substring(0, title.length() - 1);
+			} else {
+				title = commands[0];
+			}
 			rel_year = commands[1];
 			titleYearParam = "t=" + title + "&y=" + rel_year;
 		}
@@ -52,6 +62,8 @@ public class Api_call {
 			try {
 				response = Unirest.get(host + "?" + titleYearParam + "&" + omdbApiKey).asJson();
 				System.out.println(host + "?" + titleYearParam + "&" + omdbApiKey);
+				
+				//Displays the status of the API call, if we get 200 then everything is running fine
 				System.out.println(response.getStatus());
 				System.out.println(response.getHeaders().get("Content-Type"));
 			} catch (UnirestException e) {
@@ -60,6 +72,7 @@ public class Api_call {
 			}
 		}
 		
+		// Use GSON library to "prettify" the results from the query
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		JsonParser jp = new JsonParser();
 		JsonElement je = jp.parse(response.getBody().toString());
