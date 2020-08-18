@@ -39,4 +39,14 @@ In this project I wanted to make an application that was capable of providing mo
 - The application will continue to run as long as the user has a request to make, once the user is done using the app they can either type "exit" or "quit" to terminate the program.
 
 **4. Images Displaying Functionality**
+- 10 Random Movies
 
+![random](https://user-images.githubusercontent.com/59949597/90561276-77283f80-e16e-11ea-9918-c3123e7cfa4d.JPG)
+
+- Main Functionality
+
+![main](https://user-images.githubusercontent.com/59949597/90561748-2fee7e80-e16f-11ea-8252-ee256cf77538.JPG)
+
+- Search Movie
+
+![search](https://user-images.githubusercontent.com/59949597/90561945-77750a80-e16f-11ea-9902-053669631d93.JPG)
