@@ -1,6 +1,6 @@
 # Movie Recommendation/Search App
 
-In this project I wanted to make an application that was capable of providing movie recommendations and allowing a user to search for any movie and get infromation regarding it. For this project I used a combination of R(to handle data) and Java(main project functionality). This project runs directly on the command line. I've encountered some issues trying to make it work on all devicees but I'm in the process of trying to fix them.
+In this project I wanted to make an application that was capable of providing movie recommendations and allowing a user to search for any movie and get infromation regarding it. For this project I used a combination of R (to handle data) and Java (main project functionality). This project runs directly on the command line. I've encountered some issues trying to make it work on all devicees but I'm in the process of trying to fix them.
 
 ## The Process
 
@@ -39,7 +39,7 @@ In this project I wanted to make an application that was capable of providing mo
   - To make the API call I used the unirest library which I incorporated into the project using Maven.
 - The application will continue to run as long as the user has a request to make, once the user is done using the app they can either type "exit" or "quit" to terminate the program.
 
-**4. Images Displaying Functionality**
+**4. Displaying Functionality**
 - 10 Random Movies
 
 ![random](https://user-images.githubusercontent.com/59949597/90561276-77283f80-e16e-11ea-9918-c3123e7cfa4d.JPG)
