@@ -35,7 +35,7 @@ In this project I wanted to make an application that was capable of providing mo
       - A maximum of 5 movies are listed based off the user input
 - Movie Search (User enters "2")
   - Now the user will be able to search for any movie based of imdbID or a combination of name and year.
-  - After a user types the required info a call to the online api will be made.
+  - After a user types the required info a call to the online api will be made and the info will be presented in JSON format.
   - To make the API call I used the unirest library which I incorporated into the project using Maven.
 - The application will continue to run as long as the user has a request to make, once the user is done using the app they can either type "exit" or "quit" to terminate the program.
 
