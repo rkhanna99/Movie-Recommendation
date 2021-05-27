@@ -1,6 +1,6 @@
 # Movie Recommendation/Search App
 
-In this project I wanted to make an application that was capable of providing movie recommendations and allowing a user to search for any movie and get infromation regarding it. For this project I used a combination of R (to handle data) and Java (main project functionality). This project runs directly on the command line through eclipse. I've encountered some issues trying to make it work on all devices but I'm in the process of trying to fix them.
+In this project I wanted to make an application that was capable of providing movie recommendations and allowing a user to search for any movie and get infromation regarding it. For this project I used a combination of R (to handle data) and Java (main project functionality). This project runs directly on the command line through eclipse. Also note this is just running locally on my machine. Read the Future Considerations part to see how this can be improved.
 
 ## The Process
 
@@ -51,3 +51,8 @@ In this project I wanted to make an application that was capable of providing mo
 - Search Movie
 
 ![search](https://user-images.githubusercontent.com/59949597/90561945-77750a80-e16f-11ea-9902-053669631d93.JPG)
+
+## Future Considerations
+
+- The biggest change to consider in the future is how I store the data. Currently I have the data stored as a csv file locally. To improve usability I could transition the data to an online database management system like MySQL, MongoDB, etc. This would allow the app to easily run on different devices.
+- Another thing that could be implemented would be a comprehensive User Interface that would remove the need for text based actions.
